@@ -24,8 +24,12 @@ let green = {valor: 1, cor: "green"};
 let blue = {valor: 2, cor: "blue"};
 let currentPlayer = green;
 
-const createDisc = () => {
-
+const createDisc = (column, currentPlayer) => {
+    let column = document.getElementById(colum)
+    let disk = document.createElement("div")
+    disk.id = `${currentPlayer.cor}`
+    disk.className = `${currentPlayer.cor}`
+    column.appendchild(disk)
 }
 
 const alternatePlayer = () => {
