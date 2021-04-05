@@ -9,7 +9,13 @@ const board = [
     [0,0,0,0,0,0]
 ];
 
-const createBoard = () => {
+const createBoard = (n) => {
+    for (let i = 1; i <= n; i++) {
+        const column = document.createElement("div")
+        column.id = "column" + i
+        column.className = "columns"
+        game.appendChild(column)
+    }
 
 }
 
@@ -50,6 +56,12 @@ const victory = () => {
 const play = () => {
 
 }
+
+
+const game = document.getElementById('game')
+
+
+createBoard(7)
 
 /*columnOne.addEventListener("click", play);
 columnTwo.addEventListener("click", play);
