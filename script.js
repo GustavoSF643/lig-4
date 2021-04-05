@@ -44,7 +44,10 @@ const diagonalVictory = () => {
 } 
 
 const victory = () => {
-
+    const win = document.getElementById("win")
+    if(horizontalVictory || verticallVictory || diagonalVictory){
+        win.style.visibility = "visible"
+    }
 } 
 
 const play = () => {

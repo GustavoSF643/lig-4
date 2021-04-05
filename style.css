@@ -43,3 +43,17 @@
   #win {
       visibility: hidden;
   }
+
+  .green {
+    background-color: #008000;
+  }
+
+  .blue {
+    background-color: #0000ff;
+  }
+
+  #player {
+    background-color: green;
+    width: 150px;
+    border-radius: 100%;
+  }
