@@ -1,78 +1,77 @@
 * {
-    box-sizing: border-box;
-    margin: none;
-    padding: none;
-  }
-  
-  h1 {
-    font-family: monospace;
-    text-align: center;
-    margin-top: 5px;
-    padding-top: 5px;
-    font-size: 20px;
-    line-height: 30px;
-    color: #006;
-  }
-  
-  #introduction {
-    margin-left:5%;  
-    text-align: center;
-    background-color: lightgray;
-    padding: 5px;
-    width: 90%;
-  }
+  box-sizing: border-box;
+  margin: none;
+  padding: none;
+}
 
-  #introduction p {
-    font-size: 10px;
-    font-family: monospace;
- }
+h1 {
+  font-family: monospace;
+  text-align: center;
+  margin-top: 5px;
+  padding-top: 5px;
+  font-size: 20px;
+  line-height: 30px;
+  color: #006;
+}
 
-  main {
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+#introduction {
+  margin-left: 5%;
+  text-align: center;
+  background-color: lightgray;
+  padding: 5px;
+  width: 90%;
+}
 
-  #game {
-    margin-top: 20px;
-    width: 294px;  
-    height: auto;
-    display:flex;
-    justify-content:center;
-  }
+#introduction p {
+  font-size: 10px;
+  font-family: monospace;
+}
 
-  #win {
-      visibility: hidden;
-  }
+main {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  .columns{
-    width: 42px;
-    height: 190px;
-    border: solid 1px;
-    margin: 0;
-  }
+#game {
+  margin-top: 20px;
+  width: 294px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
 
-  .green {
-    background-color: #008000;
-  }
+#win {
+  visibility: hidden;
+}
 
-  .blue {
-    background-color: #0000ff;
-  }
+.columns {
+  width: 42px;
+  height: 190px;
+  border: solid 1px;
+  margin: 0;
+}
 
-  #playerDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.green {
+  background-color: #008000;
+}
 
-  #player {
-    background-color: green;
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    margin: 0 20px;
-  }
+.blue {
+  background-color: #0000ff;
+}
 
+#playerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#player {
+  background-color: green;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  margin: 0 20px;
+}

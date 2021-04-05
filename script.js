@@ -1,72 +1,66 @@
 // Tabuleiro - João
 const board = [
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0]
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
 ];
 
 const createBoard = (n) => {
-    for (let i = 1; i <= n; i++) {
-        const column = document.createElement("div")
-        column.id = "column" + i
-        column.className = "columns"
-        game.appendChild(column)
-    }
-}
+  for (let i = 1; i <= n; i++) {
+    const column = document.createElement("div");
+    column.id = "column" + i;
+    column.className = "columns";
+    game.appendChild(column);
+  }
+};
 
-const game = document.getElementById('game')
-createBoard(7)
+const game = document.getElementById("game");
+createBoard(7);
 
 let check = board;
-let green = {valor: 1, cor: "green"};
-let blue = {valor: 2, cor: "blue"};
+let green = { valor: 1, cor: "green" };
+let blue = { valor: 2, cor: "blue" };
 let currentPlayer = green;
 
 const createDisc = (column, currentPlayer) => {
-    let columnBoard = document.getElementById(column)
-    let disk = document.createElement("div")
-    disk.id = `${currentPlayer.cor}`
-    disk.className = `${currentPlayer.cor}`
-    columnBoard.appendchild(disk)
-}
+  let columnBoard = document.getElementById(column);
+  let disk = document.createElement("div");
+  disk.id = `${currentPlayer.cor}`;
+  disk.className = `${currentPlayer.cor}`;
+  columnBoard.appendchild(disk);
+};
 
 const alternatePlayer = () => {
-    if (currentPlayer === green) {
-        currentPlayer = blue;
-    }
-    if (currentPlayer === blue) {
-        currentPlayer = green;
-    }
-}
+  if (currentPlayer === green) {
+    currentPlayer = blue;
+    const player = getElementById("player");
+    player.style.background = "blue";
+  }
+  if (currentPlayer === blue) {
+    currentPlayer = green;
+    const player = getElementById("player");
+    player.style.background = "green";
+  }
+};
 
-const horizontalVictory = () => {
+const horizontalVictory = () => {};
 
-} 
+const verticallVictory = () => {};
 
-const verticallVictory = () => {
-
-} 
-
-const diagonalVictory = () => {
-
-} 
+const diagonalVictory = () => {};
 
 const victory = () => {
-    const win = document.getElementById("win")
-    if(horizontalVictory() || verticallVictory() || diagonalVictory()){
-        win.style.visibility = "visible"
-    }
-} 
+  const win = document.getElementById("win");
+  if (horizontalVictory() || verticallVictory() || diagonalVictory()) {
+    win.style.visibility = "visible";
+  }
+};
 
-const play = () => {
-
-}
-
-
+const play = () => {};
 
 /*columnOne.addEventListener("click", play);
 columnTwo.addEventListener("click", play);
@@ -76,6 +70,3 @@ columnFive.addEventListener("click", play);
 columnSix.addEventListener("click", play);
 columnSeven.addEventListener("click", play);
 */
-
- 
-
