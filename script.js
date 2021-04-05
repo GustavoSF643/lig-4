@@ -16,8 +16,10 @@ const createBoard = (n) => {
         column.className = "columns"
         game.appendChild(column)
     }
-
 }
+
+const game = document.getElementById('game')
+createBoard(7)
 
 let check = board;
 let green = {valor: 1, cor: "green"};
@@ -25,11 +27,11 @@ let blue = {valor: 2, cor: "blue"};
 let currentPlayer = green;
 
 const createDisc = (column, currentPlayer) => {
-    let column = document.getElementById(colum)
+    let columnBoard = document.getElementById(column)
     let disk = document.createElement("div")
     disk.id = `${currentPlayer.cor}`
     disk.className = `${currentPlayer.cor}`
-    column.appendchild(disk)
+    columnBoard.appendchild(disk)
 }
 
 const alternatePlayer = () => {
@@ -65,10 +67,6 @@ const play = () => {
 }
 
 
-const game = document.getElementById('game')
-
-
-createBoard(7)
 
 /*columnOne.addEventListener("click", play);
 columnTwo.addEventListener("click", play);
