@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: none;
+    padding: none;
+  }
+  
+  h1 {
+    font-family: monospace;
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 5px;
+    font-size: 20px;
+    line-height: 30px;
+    color: #006;
+  }
+  
+  #introduction {
+    margin-left:5%;  
+    text-align: center;
+    background-color: lightgray;
+    padding: 5px;
+    width: 90%;
+  }
+
+  #introduction p {
+    font-size: 10px;
+    font-family: monospace;
+ }
+
+  main {
+    display: flex;
+    justify-content: center;
+  }
+
+  #game {
+    margin-top: 20px;
+    width: 90%;  
+    height: auto;
+    display:flex;
+    justify-content:space-around;
+  }
+
+  #win {
+      visibility: hidden;
+  }
