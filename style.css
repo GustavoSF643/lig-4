@@ -41,12 +41,12 @@ main {
 
 @keyframes down {
   0% {top: 0px;}
-  100% {top: 260px;}
+  100% {top: 10px;}
 }
 
 .circle {
   position: relative;
-  background-color: #000;
+  border: #aaa solid 2px;
   border-radius: 100%;
   width: 35px;
   height: 35px;
