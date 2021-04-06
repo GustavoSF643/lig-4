@@ -47,9 +47,29 @@ const alternatePlayer = () => {
   }
 };
 
-const horizontalVictory = () => {};
+const horizontalVictory = (indexCheck) => { //indexCheck = board[i][j]
+    
+    if (check[i-3][j] === indexCheck && check[i-2][j] === indexCheck && check[i-1][j] === indexCheck) {
+        return true;
+    }
+    if (check[i-2][j] === indexCheck && check[i-1][j] === indexCheck && check[i+1][j] === indexCheck) {
+        return true;
+    }
+    if (check[i-1][j] === indexCheck && check[i+1][j] === indexCheck && check[i+2][j] === indexCheck) {
+        return true;
+    }
+    if (check[i+1][j] === indexCheck && check[i+2][j] === indexCheck && check[i+3][j] === indexCheck) {
+        return true;
+    }
+    return false;
+};
 
-const verticallVictory = () => {};
+const verticallVictory = (indexCheck) => {};
+
+    if (check[i][j-1] === indexCheck && check[i][j-2] === indexCheck && check[i][j-3] === indexCheck) {
+        return true;
+    }
+    return false;
 
 const diagonalVictory = () => {};
 
