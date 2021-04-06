@@ -1,25 +1,31 @@
 // Tabuleiro - João
-const board = [
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-];
+let board = [[], [], [], [], [], [], []]
 
-const createBoard = (n) => {
-  for (let i = 1; i <= n; i++) {
-    const column = document.createElement("div");
-    column.id = "column" + i;
+const createBoard = () => {
+  let squareId = 0;
+  let columnId = 0;
+
+  for (let coluna = 0; coluna < 7; coluna++) {
+    let column = document.createElement("div");
     column.className = "columns";
+    column.id = `${columnId}`;
     game.appendChild(column);
+    
+    for (let linha = 0; linha < 6; linha++) {
+      board[coluna][linha] = 0;
+      let square = document.createElement("div");
+      square.className = "square"
+      square.id = `${squareId}`
+      column.appendChild(square)
+      squareId++;
+    }
+    columnId++;
   }
-};
+}
 
 const game = document.getElementById("game");
-createBoard(7);
+
+createBoard()
 
 let check = board;
 let green = { valor: 1, cor: "green" };
