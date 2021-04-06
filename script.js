@@ -32,12 +32,14 @@ let green = { valor: 1, cor: "green" };
 let blue = { valor: 2, cor: "blue" };
 let currentPlayer = green;
 
-const createDisc = (column, currentPlayer) => {
-  let columnBoard = document.getElementById(column);
+const createDisc = (evt, currentPlayer) => {
   let disk = document.createElement("div");
   disk.id = `${currentPlayer.cor}`;
   disk.className = `${currentPlayer.cor}`;
-  columnBoard.appendchild(disk);
+  let xArray = evt.target.id
+  let yArray = evt.target.lastElementChild.id
+  check[xArray][yArray] = currentPlayer.valor
+  evt.target.lastElementChild.appendChild(disk);
 };
 
 const alternatePlayer = () => {
