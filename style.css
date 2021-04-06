@@ -43,6 +43,10 @@ main {
   justify-content: center;
 }
 
+#game :last-child {
+  border-right: #aaa solid 2px;
+}
+
 #win {
   visibility: hidden;
 }
@@ -54,10 +58,6 @@ main {
   border: #aaa solid 2px;
   border-right: none;
   margin: 0;
-}
-
-#column7 {
-  border-right: #aaa solid 2px;
 }
 
 .green {
