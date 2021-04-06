@@ -48,10 +48,16 @@ main {
 }
 
 .columns {
+  
   width: 42px;
   height: 190px;
-  border: solid 1px;
+  border: #aaa solid 2px;
+  border-right: none;
   margin: 0;
+}
+
+#column7 {
+  border-right: #aaa solid 2px;
 }
 
 .green {
@@ -73,5 +79,5 @@ main {
   width: 30px;
   height: 30px;
   border-radius: 100%;
-  margin: 0 20px;
+  margin-left: 20px;
 }
