@@ -47,27 +47,12 @@ const createDisc = (evt, currentPlayer) => {
   disk.id = `${currentPlayer.cor}`;
   disk.className = `${currentPlayer.cor}`;
   let xArray = 0
-  if(evt.target.id.includes(0)){
-    xArray = 0
+
+  for (let i = 0; i <= 6; i++){
+  if(evt.target.id.includes(i)){
+    xArray = i
   }
-  if(evt.target.id.includes(1)){
-    xArray = 1
-  }
-  if(evt.target.id.includes(2)){
-    xArray = 2
-  }
-  if(evt.target.id.includes(3)){
-    xArray = 3
-  }
-  if(evt.target.id.includes(4)){
-    xArray = 4
-  }
-  if(evt.target.id.includes(5)){
-    xArray = 5
-  }
-  if(evt.target.id.includes(6)){
-    xArray = 6
-  }
+}
   indexColumn = xArray
 
 if(evt.path[2].childNodes[5].childNodes[xArray].childElementCount < 6){
@@ -76,7 +61,7 @@ if(evt.path[2].childNodes[5].childNodes[xArray].childElementCount < 6){
   col = xArray
   
   const functionLine = (column) => {
-    for (let i = 0; i < column.length; i++){
+    for (let i = 0; i < column.length; i++){  
       if(column[i] === 0){
         return i
       }
@@ -87,6 +72,62 @@ if(evt.path[2].childNodes[5].childNodes[xArray].childElementCount < 6){
   line = functionLine(check[xArray]);
   check[col][line] = currentPlayer.valor
   currentPlay = check[col][line]
+
+  
+  if (line === 0){
+    disk.animate([
+      {transform: "translateY(-660%)"},
+      {transform: "translateY(0%)"},
+    ], {
+      duration: 1000,
+      easing: "ease-in"
+    });
+  }
+  if (line === 1){
+    disk.animate([
+      {transform: "translateY(-560%)"},
+      {transform: "translateY(0%)"}
+    ], {
+      duration: 900,
+      easing: "ease-in"
+    });
+  }
+  if (line === 2){
+    disk.animate([
+      {transform: "translateY(-460%)"},
+      {transform: "translateY(0%)"}
+    ], {
+      duration: 800,
+      easing: "ease-in"
+    });
+  }
+  if (line === 3){
+    disk.animate([
+      {transform: "translateY(-360%)"},
+      {transform: "translateY(0%)"}
+    ], {
+      duration: 700,
+      easing: "ease-in"
+    });
+  }
+  if (line === 4){
+    disk.animate([
+      {transform: "translateY(-260%)"},
+      {transform: "translateY(0%)"}
+    ], {
+      duration: 600,
+      easing: "ease-in"
+    });
+  }
+  if (line === 5){
+    disk.animate([
+      {transform: "translateY(-160%)"},
+      {transform: "translateY(0%)"}
+    ], {
+      duration: 500,
+      easing: "ease-in"
+    });
+  }
 };
 
 const alternatePlayer = () => {
