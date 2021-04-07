@@ -17,6 +17,7 @@
           uma tabela 7x6. O primeiro jogador que conseguir quatro de suas peças
           em uma linha (seja horizontal, vertical ou diagonal) vence.
         </p>
+        <button id="startButton">Iniciar</button>
       </div>
     </header>
     <main id="main">
@@ -26,7 +27,7 @@
         </div>
         <div id="player"></div>
       </div>
-      <div id="touch">
+      <div id="touch" class="bloqueio">
         <div class="circle" id="circle0"></div>
         <div class="circle" id="circle1"></div>
         <div class="circle" id="circle2"></div>
@@ -37,7 +38,7 @@
       </div>
       <div id="game"></div>
       <div id="win">
-        <p>Você venceu!</p>
+        <p id="winner"></p>
         <input type="button" value="Restart" id="btnRestart" />
       </div>
     </main>

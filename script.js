@@ -1,8 +1,18 @@
-// Tabuleiro - João
-let board = [[], [], [], [], [], [], []]
+const header = document.querySelector("header");
+const main = document.querySelector("main");
+const game = document.getElementById("game");
+const circle = document.querySelectorAll(".circle");
+const btnRestart = document.getElementById("btnRestart");
+const win = document.getElementById("win");
+
+const start = () => {
+  header.style.display = "none";
+  main.style.visibility = "visible";
+};
+
+
 
 const createBoard = () => {
-  let squareId = 0;
   let columnId = 0;
 
   for (let coluna = 0; coluna < 7; coluna++) {
@@ -10,21 +20,13 @@ const createBoard = () => {
     column.className = "columns";
     column.id = `column${columnId}`;
     game.appendChild(column);
-    
-    // for (let linha = 0; linha < 6; linha++) {
-    //   board[coluna][linha] = 0;
-    //   let square = document.createElement("div");
-    //   square.className = "square"
-    //   square.id = `${squareId}`
-    //   column.appendChild(square)
-    //   squareId++;
-    // }
     columnId++;
   }
 }
 
-const game = document.getElementById("game");
-
+  for (let i = 0; i < 7; i++){
+    circle[i].classList.add("hoverGreen");
+  };
 createBoard()
 
 let check = [[0,0,0,0,0,0],
@@ -72,7 +74,6 @@ if(evt.path[2].childNodes[5].childNodes[xArray].childElementCount < 6){
   line = functionLine(check[xArray]);
   check[col][line] = currentPlayer.valor
   currentPlay = check[col][line]
-
   
   if (line === 0){
     disk.animate([
@@ -130,18 +131,27 @@ if(evt.path[2].childNodes[5].childNodes[xArray].childElementCount < 6){
   }
 };
 
-const alternatePlayer = () => {
-
+const alternatePlayer = (evt) => {
   if (currentPlayer === green) {
     currentPlayer = blue;
     const player = document.getElementById("player");
     player.style.background = "blue";
+    for (let i = 0; i < 7; i++){
+    circle[i].classList.add("hoverBlue");
+    circle[i].classList.remove("hoverGreen");
+    }
+
   } else if (currentPlayer === blue) {
     currentPlayer = green;
     const player = document.getElementById("player");
     player.style.background = "green";
-  }
+    for (let i = 0; i < 7; i++){
+      circle[i].classList.add("hoverGreen");
+      circle[i].classList.remove("hoverBlue");
+    };
+  };
 };
+
 
 const horizontalVictory = (current, check) => { 
 
@@ -258,10 +268,17 @@ const diagonalVictory = (current, check) => {
   }
   return false
 };
+const winner = () => {
+  const winnerText = document.getElementById("winner");
+  winnerText.innerText = `O jogador ${currentPlayer.cor} venceu!!!` ;
+  winnerText.style.color = currentPlayer.cor;
+  btnRestart.style.background = currentPlayer.cor;
+}
 
 const victory = () => {
-  const win = document.getElementById("win");
   if (verticallVictory(currentPlay, check) || horizontalVictory(currentPlay, check) || diagonalVictory(currentPlay, check)){
+    winner();
+    alternatePlayer();
     win.style.visibility = "visible";
     touch.removeEventListener("click", play);
   }
@@ -269,15 +286,35 @@ const victory = () => {
 
 const play = (evt) => {
   createDisc(evt, currentPlayer);
-  // console.log(verticallVictory(currentPlay, check))
-  // verticallVictory(currentPlay, check);
   victory();
-
-  if(evt.path[2].childNodes[5].childNodes[indexColumn].childElementCount < 6){
-    alternatePlayer();
+  if(evt.path[2].childNodes[5].childNodes[indexColumn].childElementCount <= 6){
+    alternatePlayer(evt);
+    if (evt.path[2].childNodes[5].childNodes[indexColumn].childElementCount === 6){
+      evt.target.classList.add("bloqueio")
+    };
   };
 };
 
-const touch = document.getElementById("touch")
+const reset = (evt) => {
+  win.style.visibility = "hidden";
+  game.innerHTML = "";
+  createBoard();
+  check = [[0,0,0,0,0,0],
+          [0,0,0,0,0,0],
+          [0,0,0,0,0,0],
+          [0,0,0,0,0,0],
+          [0,0,0,0,0,0],
+          [0,0,0,0,0,0],
+          [0,0,0,0,0,0]];
+  for(let i = 0; i < 7; i++){
+    circle[i].classList.remove("bloqueio");
+  }
+  touch.addEventListener("click", play);
+
+};
+
+startButton.addEventListener("click", start);
 
 touch.addEventListener("click", play);
+
+btnRestart.addEventListener("click", reset);
