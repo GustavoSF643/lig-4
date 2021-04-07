@@ -138,14 +138,6 @@ main {
   background-color: #0000ff;
 }
 
-.hoverGreen:hover {
-  background-color: green;
-}
-
-.hoverBlue:hover {
-  background-color: blue
-}
-
 #green,
 #blue {
   box-shadow: inset 0 0 1em #151515;
@@ -289,5 +281,15 @@ main {
     color: green;
     font-size: 40px;
     font-weight: bold;
+  }
+
+  .hoverGreen:hover {
+    background-color: green;
+    cursor: pointer;
+  }
+  
+  .hoverBlue:hover {
+    background-color: blue;
+    cursor: pointer;
   }
 }
