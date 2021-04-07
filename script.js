@@ -10,8 +10,6 @@ const start = () => {
   main.style.visibility = "visible";
 };
 
-
-
 const createBoard = () => {
   let columnId = 0;
 
@@ -24,9 +22,10 @@ const createBoard = () => {
   }
 }
 
-  for (let i = 0; i < 7; i++){
-    circle[i].classList.add("hoverGreen");
-  };
+for (let i = 0; i < 7; i++){
+  circle[i].classList.add("hoverGreen");
+};
+
 createBoard()
 
 let check = [[0,0,0,0,0,0],
@@ -51,14 +50,14 @@ const createDisc = (evt, currentPlayer) => {
   let xArray = 0
 
   for (let i = 0; i <= 6; i++){
-  if(evt.target.id.includes(i)){
-    xArray = i
+    if(evt.target.id.includes(i)){
+      xArray = i
+    }
   }
-}
   indexColumn = xArray
 
-if(evt.path[2].childNodes[5].childNodes[xArray].childElementCount < 6){
-    evt.path[2].childNodes[5].childNodes[xArray].appendChild(disk);
+  if(evt.path[2].childNodes[5].childNodes[xArray].childElementCount < 6){
+      evt.path[2].childNodes[5].childNodes[xArray].appendChild(disk);
   };
   col = xArray
   
@@ -137,8 +136,8 @@ const alternatePlayer = (evt) => {
     const player = document.getElementById("player");
     player.style.background = "blue";
     for (let i = 0; i < 7; i++){
-    circle[i].classList.add("hoverBlue");
-    circle[i].classList.remove("hoverGreen");
+      circle[i].classList.add("hoverBlue");
+      circle[i].classList.remove("hoverGreen");
     }
 
   } else if (currentPlayer === blue) {
@@ -152,9 +151,9 @@ const alternatePlayer = (evt) => {
   };
 };
 
-
 const horizontalVictory = (current, check) => { 
-
+  // x é conferência de coluna para esquerda
+  // z é conferência de coluna para direita
   let x = col - 1;
   let xx = col - 2;
   let xxx = col - 3;
@@ -186,6 +185,7 @@ const horizontalVictory = (current, check) => {
 };
 
 const verticallVictory = (current, check) => {
+    // y é conferência de linha para baixo
     let y = line - 1
     let yy = line - 2
     let yyy = line - 3
@@ -198,7 +198,10 @@ const verticallVictory = (current, check) => {
 }
 
 const diagonalVictory = (current, check) => {
-
+  // x é conferência de coluna para esquerda
+  // z é conferência de coluna para direita
+  // y é conferência de linha para baixo
+  // w é conferência de linha para cima
   let x = col - 1;
   let xx = col - 2;
   let xxx = col - 3;
