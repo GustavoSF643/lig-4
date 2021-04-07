@@ -102,73 +102,125 @@ const alternatePlayer = () => {
   }
 };
 
-const horizontalVictory = (indexCheck) => { //indexCheck = board[i][j]
-    
-    if (check[i-3][j] === indexCheck && check[i-2][j] === indexCheck && check[i-1][j] === indexCheck) {
-        return true;
+const horizontalVictory = (current, check) => { 
+
+  let x = col - 1;
+  let xx = col - 2;
+  let xxx = col - 3;
+  let z = col + 1;
+  let zz = col + 2;
+  let zzz = col + 3;
+
+  if (col <= 3) {
+    if (current === check[z][line] && current === check[zz][line] && current === check[zzz][line]){
+      return true
     }
-    if (check[i-2][j] === indexCheck && check[i-1][j] === indexCheck && check[i+1][j] === indexCheck) {
-        return true;
+  }
+  if (col <= 4 && col >= 1) {
+    if (current === check[x][line] && current === check[z][line] && current === check[zz][line]){
+      return true
     }
-    if (check[i-1][j] === indexCheck && check[i+1][j] === indexCheck && check[i+2][j] === indexCheck) {
-        return true;
+  }
+  if (col <= 5 && col >= 2) {
+    if (current === check[xx][line] && current === check[x][line] && current === check[z][line]){
+      return true
     }
-    if (check[i+1][j] === indexCheck && check[i+2][j] === indexCheck && check[i+3][j] === indexCheck) {
-        return true;
+  }
+  if (col >= 3) {
+    if (current === check[xxx][line] && current === check[xx][line] && current === check[x][line]){
+      return true
     }
-    return false;
+  } 
+  return false;
 };
 
 const verticallVictory = (current, check) => {
-    let x = line - 1
-    let y = line - 2
-    let z = line - 3
-    if (current === check[col][x] && current === check[col][y] && current === check[col][z]){
-      return true
+    let y = line - 1
+    let yy = line - 2
+    let yyy = line - 3
+    if (line >= 3) {
+      if (current === check[col][y] && current === check[col][yy] && current === check[col][yyy]){
+        return true
+      }
     }
   return false
 }
 
 const diagonalVictory = (current, check) => {
-  // let leftDown = check[col-1][line-1];
-  // let rightDown = check[col+1][line-1];
-  // let leftTop = check[col-1][line+1];
-  // let rightTop = check[col+1][line+1];
-  if (current === check[col-1][line-1]){
-    if (current === check[col-2][line-2] && current === check[col-3][line-3]){
-    return true
-    };
-  };
-  if (current === check[col+1][line-1]){
-    if (current === check[col+2][line-2] && current === check[col+3][line-3]){
+
+  let x = col - 1;
+  let xx = col - 2;
+  let xxx = col - 3;
+  let z = col + 1;
+  let zz = col + 2;
+  let zzz = col + 3;
+  let y = line - 1;
+  let yy = line - 2;
+  let yyy = line - 3;
+  let w = line + 1;
+  let ww = line + 2;
+  let www = line + 3;
+
+  if (col >= 3 && line >= 3) {
+    if (current === check[x][y]){
+      if (current === check[xx][yy] && current === check[xxx][yyy]){
       return true
+      };
     };
-  };
-  if (current === check[col-1][line+1]){
-    if (current === check[col-2][line+2] && current === check[col-3][line+3]){
-      return true
+  }
+  if (col <= 3 && line >= 3) {
+    if (current === check[z][y]){
+      if (current === check[zz][yy] && current === check[zzz][yyy]){
+        return true
+      };
     };
-  };
-  if (current === check[col+1][line+1]){
-    if (current === check[col+2][line+2] && current === check[col+3][line+3]){
-      return true
+  }
+  if (col >= 3 && line <= 2) {
+    if (current === check[x][w]){
+      if (current === check[xx][ww] && current === check[xxx][www]){
+        return true
+      };
     };
-  };
-  if (current === check[col-1][line-1] && current === check[col+1][line+1]){
-    if (current === check[col-2][line-2] || current === check[col+2][line+2])
-      return true
-  };
-  if (current === check[col+1][line-1] && current === check[col-1][line+1]){
-    if (current === check[col+2][line-2] || current === check[col-2][line+2]){
-      return true
+  }
+  if (col <= 3 && line <= 2) {
+    if (current === check[z][w]){
+      if (current === check[zz][ww] && current === check[zzz][www]){
+        return true
+      };
     };
+  }
+  if (col >= 2 && line >= 2 && col <= 5 && line <= 4) {
+    if (current === check[x][y] && current === check[z][w]){
+      if (current === check[xx][yy])
+        return true
+    };
+  }
+  if (col >= 1 && line >= 1 && col <= 4 && line <= 3) {
+    if (current === check[x][y] && current === check[z][w]){
+      if (current === check[zz][ww])
+        return true
+    };
+  }
+  if (col >= 1 && line >= 2 && col <= 4 && line <= 4) {
+    if (current === check[z][y] && current === check[x][w]){
+      if (current === check[zz][yy]){
+        return true
+      };
+    }
+  }
+  if (col >= 2 && line >= 1 && col <= 5 && line <= 3) {
+    if (current === check[z][y] && current === check[x][w]){
+      if (current === check[xx][ww]){
+        return true
+      };
+    }
   }
   return false
 };
 
 const victory = () => {
   const win = document.getElementById("win");
-  if (verticallVictory(currentPlay, check) || diagonalVictory(currentPlay, check)) {
+  if (verticallVictory(currentPlay, check) || horizontalVictory(currentPlay, check) || diagonalVictory(currentPlay, check)){
     win.style.visibility = "visible";
     touch.removeEventListener("click", play);
   }
