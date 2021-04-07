@@ -21,6 +21,8 @@ h1 {
   background-color: lightgray;
   padding: 5px;
   width: 90%;
+  box-shadow: 5px 5px 5px #aaa;
+  border-radius: 5px;
 }
 
 #introduction p {
@@ -32,7 +34,7 @@ h1 {
   font-size: 15px;
   padding: 0.5rem 2rem;
   border-radius: 5px;
-  font-weight: bold ;
+  font-weight: bold;
 }
 
 main {
@@ -74,6 +76,7 @@ main {
   height: auto;
   display: flex;
   justify-content: center;
+  box-shadow: 2px 10px 5px #666;
 }
 
 #win {
@@ -96,7 +99,7 @@ main {
   text-align: center;
   color: green;
   font-size: 30px;
-  font-weight: bold ;
+  font-weight: bold;
 }
 
 #btnRestart {
@@ -104,7 +107,7 @@ main {
   font-size: 15px;
   padding: 0.5rem 2rem;
   border-radius: 5px;
-  font-weight: bold ;
+  font-weight: bold;
   color: #fff;
 }
 
@@ -117,6 +120,10 @@ main {
   border: #aaa solid 2px;
   border-right: none;
   margin: 0;
+  background: #666;
+  background: linear-gradient(90deg, #444 0%, #ddd 30%, #eee 50%, #ddd 70%, #444 99%);
+  box-shadow: inset 0 0 3em #666;
+
 }
 
 #column6 {
@@ -131,9 +138,18 @@ main {
   background-color: #0000ff;
 }
 
-#green, #blue {
+.hoverGreen:hover {
+  background-color: green;
+}
+
+.hoverBlue:hover {
+  background-color: blue
+}
+
+#green,
+#blue {
   box-shadow: inset 0 0 1em #151515;
-  border: #aaa solid 2px;
+  border: #444 solid 1px;
   border-radius: 100%;
   width: 40px;
   height: 40px;
@@ -157,10 +173,79 @@ main {
   pointer-events: none;
 }
 
-@media screen and (min-width: 500px) {
-  
-}
+@media screen and (min-width: 500px) {}
 
 @media screen and (min-width: 768px) {
 
+  h1 {
+    font-size: 50px;
+  }
+
+  #introduction {
+    margin: 0 auto;
+    padding: 5px;
+    width: 700px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #introduction p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 100px;
+  }
+
+  #startButton {
+    width: 150px;
+    height: 50px;
+  }
+
+  h3 {
+    font-size: 50px;
+    margin: 30px;
+  }
+
+  #player {
+    background-color: green;
+    width: 60px;
+    height: 60px;
+  }
+
+  .circle {
+    width: 60px;
+    height: 60px;
+    margin: 0 4px;
+  }
+
+  #game {
+    margin-top: 20px;
+    width: 480px;
+    height: 365px;
+  }
+
+  .columns {
+
+    width: 68px;
+    height: 365px;
+    border: #aaa solid 2px;
+    border-right: none;
+    margin: 0;
+  }
+
+  #green,
+  #blue {
+    width: 60px;
+    height: 60px;
+  }
+
+  #winner {
+    text-align: center;
+    padding: 0 10px;
+    color: green;
+    font-size: 40px;
+    font-weight: bold;
+  }
 }
