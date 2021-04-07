@@ -72,14 +72,17 @@ const horizontalVictory = (indexCheck) => { //indexCheck = board[i][j]
     return false;
 };
 
-const verticallVictory = (indexCheck) => {};
+  const verticallVictory = (indexCheck) => {;
 
     if (check[i][j-1] === indexCheck && check[i][j-2] === indexCheck && check[i][j-3] === indexCheck) {
         return true;
     }
     return false;
+  }
 
-const diagonalVictory = () => {};
+const diagonalVictory = () => {
+
+};
 
 const victory = () => {
   const win = document.getElementById("win");
@@ -88,7 +91,9 @@ const victory = () => {
   }
 };
 
-const play = () => {};
+const play = () => {
+  
+};
 
 /*columnOne.addEventListener("click", play);
 columnTwo.addEventListener("click", play);
