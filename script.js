@@ -271,15 +271,33 @@ const diagonalVictory = (current, check) => {
   }
   return false
 };
+
+const tie = (check) => {
+  let sum = 0;
+  for (let i = 0; i < 7; i++) {
+    if (check[i][5] !== 0){
+      sum++ 
+    }
+  }
+  return sum === 7;
+}
+
 const winner = () => {
   const winnerText = document.getElementById("winner");
-  winnerText.innerText = `O jogador ${currentPlayer.cor} venceu!!!` ;
-  winnerText.style.color = currentPlayer.cor;
-  btnRestart.style.background = currentPlayer.cor;
+  if (tie(check)) {
+    winnerText.innerText = "Não houve vencedor." ;
+    winnerText.style.color = "black";
+    btnRestart.style.background = "black";
+  }
+  else {
+    winnerText.innerText = `O jogador ${currentPlayer.cor} venceu!!!` ;
+    winnerText.style.color = currentPlayer.cor;
+    btnRestart.style.background = currentPlayer.cor;
+  }  
 }
 
 const victory = () => {
-  if (verticallVictory(currentPlay, check) || horizontalVictory(currentPlay, check) || diagonalVictory(currentPlay, check)){
+  if (verticallVictory(currentPlay, check) || horizontalVictory(currentPlay, check) || diagonalVictory(currentPlay, check) || tie(check)) {
     winner();
     alternatePlayer();
     win.style.visibility = "visible";
