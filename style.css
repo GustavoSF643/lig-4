@@ -81,7 +81,7 @@ main {
 
 #win {
   background-color: rgba(255, 255, 255, 0.686);
-  margin-top: 50px;
+  margin-top: 80px;
   visibility: hidden;
   display: flex;
   flex-direction: column;
@@ -89,7 +89,7 @@ main {
   justify-content: center;
   position: absolute;
   width: 300px;
-  height: 320px;
+  height: 170px;
   border: 2px #000 solid;
   border-radius: 10px;
   box-shadow: 5px 5px 5px #000;
@@ -100,6 +100,7 @@ main {
   color: green;
   font-size: 30px;
   font-weight: bold;
+  margin-top: 5px;
 }
 
 #btnRestart {
@@ -186,7 +187,6 @@ main {
   #win {
     margin-top: 105px;
     width: 370px;
-    height: 380px;
   }
 
   .columns {
@@ -273,6 +273,11 @@ main {
   #blue {
     width: 60px;
     height: 60px;
+  }
+
+  #win {
+    width: 500px;
+    height: 200px;
   }
 
   #winner {
