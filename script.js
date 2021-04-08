@@ -6,11 +6,13 @@ const btnRestart = document.getElementById("btnRestart");
 const win = document.getElementById("win");
 const clickSound = document.getElementById("clickSound");
 const fallSound = document.getElementById("fallSound");
+const lineLength = 6;
+const colLength = 7;
 
 const createBoard = () => {
   let columnId = 0;
   
-  for (let coluna = 0; coluna < 7; coluna++) {
+  for (let coluna = 0; coluna < colLength; coluna++) {
     let column = document.createElement("div");
     column.className = "columns";
     column.id = `column${columnId}`;
@@ -39,18 +41,19 @@ let currentPlay = [];
 let col = 0;
 let line = 0;
 
+
 const createDisc = (evt, currentPlayer) => {
   let disk = document.createElement("div");
   disk.id = `${currentPlayer.cor}`;
   disk.className = `${currentPlayer.cor}`;
   
-  for (let i = 0; i <= 6; i++){
+  for (let i = 0; i < colLength; i++){
     if(evt.path[1].children[i].id === evt.target.id){
       col = i
     }
   };
   
-  if(evt.path[2].childNodes[5].childNodes[col].childElementCount < 6){
+  if(evt.path[2].childNodes[5].childNodes[col].childElementCount < lineLength){
     evt.path[2].childNodes[5].childNodes[col].appendChild(disk);
     clickSound.play();
   };
@@ -68,65 +71,17 @@ const createDisc = (evt, currentPlayer) => {
   check[col][line] = currentPlayer.valor;
   currentPlay = check[col][line];
   
-  if (line === 0){
-    setTimeout(function() {fallSound.play()}, 1000)
-    disk.animate([
-      {transform: "translateY(-660%)"},
-      {transform: "translateY(0%)"},
-    ], {
-      duration: 1000,
-      easing: "ease-in"
-    });
-  };
-  if (line === 1){
-    setTimeout(function() {fallSound.play()}, 900)
-    disk.animate([
-      {transform: "translateY(-560%)"},
-      {transform: "translateY(0%)"}
-    ], {
-      duration: 900,
-      easing: "ease-in"
-    });
-  };
-  if (line === 2){
-    setTimeout(function() {fallSound.play()}, 800)
-    disk.animate([
-      {transform: "translateY(-460%)"},
-      {transform: "translateY(0%)"}
-    ], {
-      duration: 800,
-      easing: "ease-in"
-    });
-  };
-  if (line === 3){
-    setTimeout(function() {fallSound.play()}, 700)
-    disk.animate([
-      {transform: "translateY(-360%)"},
-      {transform: "translateY(0%)"}
-    ], {
-      duration: 700,
-      easing: "ease-in"
-    });
-  };
-  if (line === 4){
-    setTimeout(function() {fallSound.play()}, 600)
-    disk.animate([
-      {transform: "translateY(-260%)"},
-      {transform: "translateY(0%)"}
-    ], {
-      duration: 600,
-      easing: "ease-in"
-    });
-  };
-  if (line === 5){
-    setTimeout(function() {fallSound.play()}, 500)
-    disk.animate([
-      {transform: "translateY(-160%)"},
-      {transform: "translateY(0%)"}
-    ], {
-      duration: 500,
-      easing: "ease-in"
-    });
+  for (let i = 0; i < lineLength; i++){
+    if (line === i){
+      setTimeout(function() {fallSound.play()}, 1000 - (100 * i))
+      disk.animate([
+        {transform: `translateY(${-660 + (100 * i)}%)`},
+        {transform: "translateY(0%)"},
+      ], {
+        duration: 1000 - (100 * i),
+        easing: "ease-in"
+      });
+    }
   };
 };
 
@@ -135,7 +90,7 @@ const alternatePlayer = () => {
     currentPlayer = blue;
     const player = document.getElementById("player");
     player.style.background = "blue";
-    for (let i = 0; i < 7; i++){
+    for (let i = 0; i < colLength; i++){
       circle[i].classList.add("hoverBlue");
       circle[i].classList.remove("hoverGreen");
     };
@@ -144,7 +99,7 @@ const alternatePlayer = () => {
     currentPlayer = green;
     const player = document.getElementById("player");
     player.style.background = "green";
-    for (let i = 0; i < 7; i++){
+    for (let i = 0; i < colLength; i++){
       circle[i].classList.add("hoverGreen");
       circle[i].classList.remove("hoverBlue");
     };
@@ -330,12 +285,12 @@ const diagonalVictory = (current, check, evt) => {
 
 const tie = (check) => {
   let sum = 0;
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < colLength; i++) {
     if (check[i][5] !== 0){
       sum++ 
     }
   }
-  return sum === 7;
+  return sum === colLength;
 };
 
 const winner = () => {
@@ -363,9 +318,9 @@ const victory = (evt) => {
 const play = (evt) => {
   createDisc(evt, currentPlayer);
   victory(evt);
-  if(evt.path[2].childNodes[5].childNodes[col].childElementCount <= 6){
+  if(evt.path[2].childNodes[5].childNodes[col].childElementCount < colLength){
     alternatePlayer();
-    if (evt.path[2].childNodes[5].childNodes[col].childElementCount === 6){
+    if (evt.path[2].childNodes[5].childNodes[col].childElementCount === lineLength){
       evt.target.classList.add("bloqueio")
     };
   };
@@ -382,7 +337,7 @@ const reset = (evt) => {
           [0,0,0,0,0,0],
           [0,0,0,0,0,0],
           [0,0,0,0,0,0]];
-  for(let i = 0; i < 7; i++){
+  for(let i = 0; i < colLength; i++){
     circle[i].classList.remove("bloqueio");
   };
   touch.addEventListener("click", play);
