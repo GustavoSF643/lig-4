@@ -143,7 +143,7 @@ const alternatePlayer = () => {
   };
 };
 
-const horizontalVictory = (current, check) => { 
+const horizontalVictory = (current, check, evt) => { 
   // x é conferência de coluna para esquerda
   // z é conferência de coluna para direita
   let x = col - 1;
@@ -152,24 +152,40 @@ const horizontalVictory = (current, check) => {
   let z = col + 1;
   let zz = col + 2;
   let zzz = col + 3;
-
+  let currentDOM = evt.path[2].childNodes[5].childNodes[col].childNodes[line];
   if (col <= 3) {
     if (current === check[z][line] && current === check[zz][line] && current === check[zzz][line]){
+      currentDOM.style.background = "red";
+      evt.path[2].childNodes[5].childNodes[z].childNodes[line].style.background = "red";
+      evt.path[2].childNodes[5].childNodes[zz].childNodes[line].style.background = "red";
+      evt.path[2].childNodes[5].childNodes[zzz].childNodes[line].style.background = "red";
       return true
     }
   };
   if (col <= 4 && col >= 1) {
     if (current === check[x][line] && current === check[z][line] && current === check[zz][line]){
+      currentDOM.style.background = "red";
+      evt.path[2].childNodes[5].childNodes[x].childNodes[line].style.background = "red";
+      evt.path[2].childNodes[5].childNodes[z].childNodes[line].style.background = "red";
+      evt.path[2].childNodes[5].childNodes[zz].childNodes[line].style.background = "red";
       return true
     }
   };
   if (col <= 5 && col >= 2) {
     if (current === check[xx][line] && current === check[x][line] && current === check[z][line]){
+      currentDOM.style.background = "red";
+      evt.path[2].childNodes[5].childNodes[xx].childNodes[line].style.background = "red";
+      evt.path[2].childNodes[5].childNodes[x].childNodes[line].style.background = "red";
+      evt.path[2].childNodes[5].childNodes[z].childNodes[line].style.background = "red";
       return true
     }
   };
   if (col >= 3) {
     if (current === check[xxx][line] && current === check[xx][line] && current === check[x][line]){
+      currentDOM.style.background = "red";
+      evt.path[2].childNodes[5].childNodes[xxx].childNodes[line].style.background = "red";
+      evt.path[2].childNodes[5].childNodes[xx].childNodes[line].style.background = "red";
+      evt.path[2].childNodes[5].childNodes[x].childNodes[line].style.background = "red";
       return true
     }
   };
@@ -194,7 +210,7 @@ const verticallVictory = (current, check, evt) => {
   return false
 };
 
-const diagonalVictory = (current, check) => {
+const diagonalVictory = (current, check, evt) => {
   // x é conferência de coluna para esquerda
   // z é conferência de coluna para direita
   // y é conferência de linha para baixo
@@ -211,17 +227,26 @@ const diagonalVictory = (current, check) => {
   let w = line + 1;
   let ww = line + 2;
   let www = line + 3;
+  let currentDOM = evt.path[2].childNodes[5].childNodes[col].childNodes[line]
 
   if (col >= 3 && line >= 3) {
     if (current === check[x][y]){
       if (current === check[xx][yy] && current === check[xxx][yyy]){
-      return true
+        currentDOM.style.background = "red";
+        evt.path[2].childNodes[5].childNodes[x].childNodes[y].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[xx].childNodes[yy].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[xxx].childNodes[yyy].style.background = "red";
+        return true
       };
     };
   };
   if (col <= 3 && line >= 3) {
     if (current === check[z][y]){
       if (current === check[zz][yy] && current === check[zzz][yyy]){
+        currentDOM.style.background = "red";
+        evt.path[2].childNodes[5].childNodes[z].childNodes[y].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[zz].childNodes[yy].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[zzz].childNodes[yyy].style.background = "red";
         return true
       };
     };
@@ -229,6 +254,10 @@ const diagonalVictory = (current, check) => {
   if (col >= 3 && line <= 2) {
     if (current === check[x][w]){
       if (current === check[xx][ww] && current === check[xxx][www]){
+        currentDOM.style.background = "red";
+        evt.path[2].childNodes[5].childNodes[x].childNodes[w].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[xx].childNodes[ww].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[xxx].childNodes[www].style.background = "red";
         return true
       };
     };
@@ -236,25 +265,43 @@ const diagonalVictory = (current, check) => {
   if (col <= 3 && line <= 2) {
     if (current === check[z][w]){
       if (current === check[zz][ww] && current === check[zzz][www]){
+        currentDOM.style.background = "red";
+        evt.path[2].childNodes[5].childNodes[z].childNodes[w].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[zz].childNodes[ww].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[zzz].childNodes[www].style.background = "red";
         return true
       };
     };
   };
   if (col >= 2 && line >= 2 && col <= 5 && line <= 4) {
     if (current === check[x][y] && current === check[z][w]){
-      if (current === check[xx][yy])
+      if (current === check[xx][yy]){
+        currentDOM.style.background = "red";
+        evt.path[2].childNodes[5].childNodes[x].childNodes[y].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[z].childNodes[w].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[xx].childNodes[yy].style.background = "red";
         return true
     };
   };
+}
   if (col >= 1 && line >= 1 && col <= 4 && line <= 3) {
     if (current === check[x][y] && current === check[z][w]){
-      if (current === check[zz][ww])
+      if (current === check[zz][ww]){
+        currentDOM.style.background = "red";
+        evt.path[2].childNodes[5].childNodes[x].childNodes[y].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[z].childNodes[w].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[zz].childNodes[ww].style.background = "red";
         return true
+      }
     };
   };
   if (col >= 1 && line >= 2 && col <= 4 && line <= 4) {
     if (current === check[z][y] && current === check[x][w]){
       if (current === check[zz][yy]){
+        currentDOM.style.background = "red";
+        evt.path[2].childNodes[5].childNodes[z].childNodes[y].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[x].childNodes[w].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[zz].childNodes[yy].style.background = "red";
         return true
       };
     }
@@ -262,6 +309,10 @@ const diagonalVictory = (current, check) => {
   if (col >= 2 && line >= 1 && col <= 5 && line <= 3) {
     if (current === check[z][y] && current === check[x][w]){
       if (current === check[xx][ww]){
+        currentDOM.style.background = "red";
+        evt.path[2].childNodes[5].childNodes[z].childNodes[y].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[x].childNodes[w].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[xx].childNodes[ww].style.background = "red";
         return true
       };
     }
@@ -293,7 +344,7 @@ const winner = () => {
 };
 
 const victory = (evt) => {
-  if (verticallVictory(currentPlay, check, evt) || horizontalVictory(currentPlay, check) || diagonalVictory(currentPlay, check) || tie(check)) {
+  if (verticallVictory(currentPlay, check, evt) || horizontalVictory(currentPlay, check, evt) || diagonalVictory(currentPlay, check, evt) || tie(check)) {
     winner();
     alternatePlayer();
     win.style.visibility = "visible";
