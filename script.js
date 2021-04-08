@@ -34,7 +34,6 @@ let check = [[0,0,0,0,0,0],
 let green = { valor: 1, cor: "green" };
 let blue = { valor: 2, cor: "blue" };
 let currentPlayer = green;
-let indexColumn = 0;
 let currentPlay = [];
 let col = 0;
 let line = 0;
@@ -43,19 +42,16 @@ const createDisc = (evt, currentPlayer) => {
   let disk = document.createElement("div");
   disk.id = `${currentPlayer.cor}`;
   disk.className = `${currentPlayer.cor}`;
-  let xArray = 0;
   
   for (let i = 0; i <= 6; i++){
-    if(evt.target.id.includes(i)){
-      xArray = i
+    if(evt.path[1].children[i].id === evt.target.id){
+      col = i
     }
   };
-  indexColumn = xArray;
   
-  if(evt.path[2].childNodes[5].childNodes[xArray].childElementCount < 6){
-    evt.path[2].childNodes[5].childNodes[xArray].appendChild(disk);
+  if(evt.path[2].childNodes[5].childNodes[col].childElementCount < 6){
+    evt.path[2].childNodes[5].childNodes[col].appendChild(disk);
   };
-  col = xArray;
   
   const functionLine = (column) => {
     for (let i = 0; i < column.length; i++){  
@@ -66,7 +62,7 @@ const createDisc = (evt, currentPlayer) => {
     return false
   };
 
-  line = functionLine(check[xArray]);
+  line = functionLine(check[col]);
   check[col][line] = currentPlayer.valor;
   currentPlay = check[col][line];
   
@@ -126,7 +122,7 @@ const createDisc = (evt, currentPlayer) => {
   };
 };
 
-const alternatePlayer = (evt) => {
+const alternatePlayer = () => {
   if (currentPlayer === green) {
     currentPlayer = blue;
     const player = document.getElementById("player");
@@ -180,13 +176,18 @@ const horizontalVictory = (current, check) => {
   return false;
 };
 
-const verticallVictory = (current, check) => {
+const verticallVictory = (current, check, evt) => {
     // y é conferência de linha para baixo
     let y = line - 1;
     let yy = line - 2;
     let yyy = line - 3;
+    let currentDOM = evt.path[2].childNodes[5].childNodes[col].childNodes[line]
     if (line >= 3) {
       if (current === check[col][y] && current === check[col][yy] && current === check[col][yyy]){
+        currentDOM.style.background = "red"
+        evt.path[2].childNodes[5].childNodes[col].childNodes[y].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[col].childNodes[yy].style.background = "red";
+        evt.path[2].childNodes[5].childNodes[col].childNodes[yyy].style.background = "red";
         return true
       }
     };
@@ -291,8 +292,8 @@ const winner = () => {
   }
 };
 
-const victory = () => {
-  if (verticallVictory(currentPlay, check) || horizontalVictory(currentPlay, check) || diagonalVictory(currentPlay, check) || tie(check)) {
+const victory = (evt) => {
+  if (verticallVictory(currentPlay, check, evt) || horizontalVictory(currentPlay, check) || diagonalVictory(currentPlay, check) || tie(check)) {
     winner();
     alternatePlayer();
     win.style.visibility = "visible";
@@ -302,10 +303,10 @@ const victory = () => {
 
 const play = (evt) => {
   createDisc(evt, currentPlayer);
-  victory();
-  if(evt.path[2].childNodes[5].childNodes[indexColumn].childElementCount <= 6){
-    alternatePlayer(evt);
-    if (evt.path[2].childNodes[5].childNodes[indexColumn].childElementCount === 6){
+  victory(evt);
+  if(evt.path[2].childNodes[5].childNodes[col].childElementCount <= 6){
+    alternatePlayer();
+    if (evt.path[2].childNodes[5].childNodes[col].childElementCount === 6){
       evt.target.classList.add("bloqueio")
     };
   };
