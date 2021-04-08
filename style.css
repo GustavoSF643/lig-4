@@ -80,7 +80,7 @@ main {
 }
 
 #win {
-  background-color: rgba(255, 255, 255, 0.796);
+  background-color: rgba(255, 255, 255, 0.686);
   margin-top: 50px;
   visibility: hidden;
   display: flex;
