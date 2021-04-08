@@ -5,14 +5,10 @@ const circle = document.querySelectorAll(".circle");
 const btnRestart = document.getElementById("btnRestart");
 const win = document.getElementById("win");
 
-const start = () => {
-  header.style.display = "none";
-  main.style.visibility = "visible";
-};
 
 const createBoard = () => {
   let columnId = 0;
-
+  
   for (let coluna = 0; coluna < 7; coluna++) {
     let column = document.createElement("div");
     column.className = "columns";
@@ -22,19 +18,19 @@ const createBoard = () => {
   }
 }
 
-for (let i = 0; i < 7; i++){
-  circle[i].classList.add("hoverGreen");
+const start = () => {
+  header.style.display = "none";
+  main.style.visibility = "visible";
+  createBoard()
 };
 
-createBoard()
-
 let check = [[0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0]]
+[0,0,0,0,0,0],
+[0,0,0,0,0,0],
+[0,0,0,0,0,0],
+[0,0,0,0,0,0],
+[0,0,0,0,0,0],
+[0,0,0,0,0,0]]
 let green = { valor: 1, cor: "green" };
 let blue = { valor: 2, cor: "blue" };
 let currentPlayer = green;
@@ -48,16 +44,16 @@ const createDisc = (evt, currentPlayer) => {
   disk.id = `${currentPlayer.cor}`;
   disk.className = `${currentPlayer.cor}`;
   let xArray = 0
-
+  
   for (let i = 0; i <= 6; i++){
     if(evt.target.id.includes(i)){
       xArray = i
     }
   }
   indexColumn = xArray
-
+  
   if(evt.path[2].childNodes[5].childNodes[xArray].childElementCount < 6){
-      evt.path[2].childNodes[5].childNodes[xArray].appendChild(disk);
+    evt.path[2].childNodes[5].childNodes[xArray].appendChild(disk);
   };
   col = xArray
   
