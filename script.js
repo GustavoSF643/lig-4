@@ -4,7 +4,8 @@ const game = document.getElementById("game");
 const circle = document.querySelectorAll(".circle");
 const btnRestart = document.getElementById("btnRestart");
 const win = document.getElementById("win");
-
+const clickSound = document.getElementById("clickSound");
+const fallSound = document.getElementById("fallSound");
 
 const createBoard = () => {
   let columnId = 0;
@@ -51,6 +52,7 @@ const createDisc = (evt, currentPlayer) => {
   
   if(evt.path[2].childNodes[5].childNodes[col].childElementCount < 6){
     evt.path[2].childNodes[5].childNodes[col].appendChild(disk);
+    clickSound.play();
   };
   
   const functionLine = (column) => {
@@ -67,6 +69,7 @@ const createDisc = (evt, currentPlayer) => {
   currentPlay = check[col][line];
   
   if (line === 0){
+    setTimeout(function() {fallSound.play()}, 1000)
     disk.animate([
       {transform: "translateY(-660%)"},
       {transform: "translateY(0%)"},
@@ -76,6 +79,7 @@ const createDisc = (evt, currentPlayer) => {
     });
   };
   if (line === 1){
+    setTimeout(function() {fallSound.play()}, 900)
     disk.animate([
       {transform: "translateY(-560%)"},
       {transform: "translateY(0%)"}
@@ -85,6 +89,7 @@ const createDisc = (evt, currentPlayer) => {
     });
   };
   if (line === 2){
+    setTimeout(function() {fallSound.play()}, 800)
     disk.animate([
       {transform: "translateY(-460%)"},
       {transform: "translateY(0%)"}
@@ -94,6 +99,7 @@ const createDisc = (evt, currentPlayer) => {
     });
   };
   if (line === 3){
+    setTimeout(function() {fallSound.play()}, 700)
     disk.animate([
       {transform: "translateY(-360%)"},
       {transform: "translateY(0%)"}
@@ -103,6 +109,7 @@ const createDisc = (evt, currentPlayer) => {
     });
   };
   if (line === 4){
+    setTimeout(function() {fallSound.play()}, 600)
     disk.animate([
       {transform: "translateY(-260%)"},
       {transform: "translateY(0%)"}
@@ -112,6 +119,7 @@ const createDisc = (evt, currentPlayer) => {
     });
   };
   if (line === 5){
+    setTimeout(function() {fallSound.play()}, 500)
     disk.animate([
       {transform: "translateY(-160%)"},
       {transform: "translateY(0%)"}
